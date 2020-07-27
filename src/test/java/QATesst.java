@@ -18,12 +18,15 @@ public static final Logger logger = LogManager.getLogger(QATesst.class);
    private WebDriver driver;
 
 
-    @BeforeClass
-    public static void setUpClass() {
-        WebDriverManager.chromedriver().setup();
-    }
+
     @Before
-    public void  setUp() { driver = new ChromeDriver();}
+    public void  setUp() { driver = new ChromeDriver();
+        WebDriverManager.chromedriver().setup();
+
+        driver.get("https://market.yandex.ru");
+        driver.manage().timeouts().implicitlyWait ( 4, TimeUnit.SECONDS );
+        driver.manage().window().maximize();
+    }
 
 
         @After
@@ -34,10 +37,8 @@ public static final Logger logger = LogManager.getLogger(QATesst.class);
         }
         @Test
     public void imilic() {
-        driver.get("https://market.yandex.ru");
-        driver.manage().timeouts().implicitlyWait ( 4, TimeUnit.SECONDS );
 
-        driver.findElement(By.xpath());
+        driver.findElement(By.xpath()).sendKeys();
     }
 
 
