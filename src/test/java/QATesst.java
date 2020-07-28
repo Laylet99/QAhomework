@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +19,8 @@ public class QATesst {
 public static final Logger logger = LogManager.getLogger(QATesst.class);
    private WebDriver driver;
 
+
+   private WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
 
 
     @Before
@@ -37,11 +41,18 @@ public static final Logger logger = LogManager.getLogger(QATesst.class);
         }
         @Test
     public void imilic() {
-
-        driver.findElement(By.xpath()).sendKeys();
+        click("");
+        sendKeys("","");
     }
 
 
+    private void click(String lovstor){
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(lovstor))).click();
+    }
+
+    private void sendKeys(String locator, String text){
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator))).sendKeys(text);
+    }
 
 
 }
